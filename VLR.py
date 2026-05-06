@@ -7,6 +7,40 @@ from pathlib import Path
 import numpy as np
 
 
+def download_dataset_from_kaggle(output_dir='bronze'):
+    """
+    Download the VLR VALORANT dataset from Kaggle using kagglehub.
+    
+    Install dependencies first:
+    pip install kagglehub[pandas-datasets]
+    
+    Args:
+        output_dir: Directory to save the dataset (default: 'bronze')
+    """
+    try:
+        import kagglehub
+        from kagglehub import KaggleDatasetAdapter
+        
+        print(f'Downloading VLR VALORANT dataset to {output_dir}...')
+        
+        # Load the latest version of the dataset
+        df = kagglehub.load_dataset(
+            KaggleDatasetAdapter.PANDAS,
+            "pvcodes/vlr-gg-valorant-match-analytics-dataset",
+            "",  # file_path - leave empty to get all files
+        )
+        
+        print(f"Dataset downloaded successfully!")
+        print(f"First 5 records:")
+        print(df.head())
+        
+        return df
+    except ImportError:
+        print("kagglehub not installed. Install it with:")
+        print("pip install kagglehub[pandas-datasets]")
+        return None
+
+
 def find_acs_column(columns):
     candidates = [
         'average_combat_score',
@@ -145,7 +179,16 @@ def main():
         help='Optional path to save the histogram image',
         default=None,
     )
+    parser.add_argument(
+        '--download',
+        help='Download the VLR dataset from Kaggle (requires kagglehub installed)',
+        action='store_true',
+    )
     args = parser.parse_args()
+
+    if args.download:
+        download_dataset_from_kaggle()
+        return
 
     df, acs_col = load_dataset(args.dataset)
     plot_acs_histogram(df, acs_col, args.output)
