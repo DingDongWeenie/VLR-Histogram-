@@ -141,6 +141,7 @@ Each `data.csv` contains player statistics including:
 
 ## Requirements
 
+### Core Dependencies
 ```
 pandas
 matplotlib
@@ -151,6 +152,18 @@ numpy
 Install with:
 ```bash
 pip install pandas matplotlib seaborn numpy
+```
+
+### Optional Dependencies
+To download datasets directly from Kaggle:
+```bash
+pip install kagglehub[pandas-datasets]
+```
+
+Then use the `--download` flag:
+```bash
+python VLR.py --download
+python VLR_distributions.py --download
 ```
 
 ---
