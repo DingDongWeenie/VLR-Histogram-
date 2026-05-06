@@ -10,6 +10,7 @@ import numpy as np
 def download_dataset_from_kaggle(output_dir='bronze'):
     """
     Download the VLR VALORANT dataset from Kaggle using kagglehub.
+    Skips download if the dataset already exists locally.
     
     Install dependencies first:
     pip install kagglehub[pandas-datasets]
@@ -17,6 +18,12 @@ def download_dataset_from_kaggle(output_dir='bronze'):
     Args:
         output_dir: Directory to save the dataset (default: 'bronze')
     """
+    # Check if dataset already exists
+    if os.path.exists(output_dir) and os.path.isdir(output_dir):
+        print(f"Dataset already exists at '{output_dir}/'")
+        print(f"To use it, run: python VLR_distributions.py {output_dir}")
+        return None
+    
     try:
         import kagglehub
         from kagglehub import KaggleDatasetAdapter
