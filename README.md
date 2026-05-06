@@ -2,6 +2,12 @@
 
 This repository contains Python scripts for analyzing and visualizing professional VALORANT player performance metrics using statistical distributions and real data from the VLR (VALORANT Champions League) bronze dataset.
 
+## Video Recording
+
+```
+https://taftsti-my.sharepoint.com/:f:/g/personal/cruz_254990_pasay-edsa_sti_edu_ph/IgA0Xdqc4z2UQrGpKdZaMPYcAWJuzxtp-rgj5VlFJWnx5QI?e=PAG1EX
+```
+
 ## Project Overview
 
 These scripts demonstrate statistical analysis of esports data, focusing on how different probability distributions model player performance metrics in competitive VALORANT.
