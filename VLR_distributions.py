@@ -25,8 +25,8 @@ def download_dataset_from_kaggle(output_dir='bronze'):
         return None
     
     try:
-        import kagglehub
-        from kagglehub import KaggleDatasetAdapter
+        import kagglehub  # type: ignore
+        from kagglehub import KaggleDatasetAdapter  # type: ignore
         
         print(f'Downloading VLR VALORANT dataset to {output_dir}...')
         
